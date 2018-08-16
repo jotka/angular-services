@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 import { Account } from './account';
 import { LoggerService } from './logger.service';
@@ -12,8 +13,8 @@ export class AccountService {
         {name: 'Hidden Account', status: 'unknown'}
     ];
 
-    get accounts():Account[] {
-        return this._accounts.slice();
+    getAccounts():Observable<Account[]> {
+        return of(this._accounts.slice());
     }
 
     statusUpdated:EventEmitter<string> = new EventEmitter<string>();
